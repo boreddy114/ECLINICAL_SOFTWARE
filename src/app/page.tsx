@@ -360,6 +360,12 @@ export default function AppDashboard() {
   return (
     <div className="app-container">
       {/* Sidebar Navigation */}
+      {isMobileMenuOpen && (
+        <div 
+          onClick={() => setIsMobileMenuOpen(false)}
+          style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.6)', zIndex: 999, backdropFilter: 'blur(4px)' }} 
+        />
+      )}
       <nav className={`sidebar ${isMobileMenuOpen ? 'open' : ''}`}>
         <div style={{ padding: '0.5rem', marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <Activity color="var(--accent-color)" size={28} />
@@ -496,7 +502,7 @@ export default function AppDashboard() {
                               )) : <div style={{ color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>No imaging records found.</div>}
                             </div>
                           ) : (
-                            <div style={{ flex: 1, width: '100%', minHeight: '250px' }}>
+                            <div style={{ flex: 1, width: '100%', height: '250px', position: 'relative' }}>
                               <ResponsiveContainer width="100%" height="100%">
                                 {activeGraph === 'bp' ? (
                                 <LineChart data={selectedPatient.vitalsHistory} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
