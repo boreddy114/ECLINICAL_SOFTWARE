@@ -334,18 +334,29 @@ textarea.input-field {
     overflow-y: visible;
   }
   .sidebar {
-    width: 100%;
-    height: auto;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 0.5rem;
-    border-right: none;
-    border-bottom: 1px solid var(--border-color);
+    position: fixed;
+    top: 0;
+    left: -300px;
+    height: 100vh;
+    width: 260px;
+    z-index: 1000;
+    background: rgba(13, 17, 23, 0.98);
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+    border-right: 1px solid var(--border-color);
+    transition: left 0.3s ease;
+    box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+  }
+  .sidebar.open {
+    left: 0;
   }
   .sidebar-item {
-    margin-bottom: 0;
-    font-size: 0.85rem;
-    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem;
+  }
+  .mobile-only-btn {
+    display: flex !important;
   }
   .pulse-indicator {
     display: none;

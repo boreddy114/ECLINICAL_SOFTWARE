@@ -23,6 +23,7 @@ export default function AppDashboard() {
   const [selectedPatientId, setSelectedPatientId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeGraph, setActiveGraph] = useState<'bp' | 'a1c' | 'imaging'>('bp');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   // Chat & AI State
   const [chatHistory, setChatHistory] = useState<{role: string, parts?: [{text: string}], content?: string }[]>([]);
@@ -359,19 +360,19 @@ export default function AppDashboard() {
   return (
     <div className="app-container">
       {/* Sidebar Navigation */}
-      <nav className="sidebar">
+      <nav className={`sidebar ${isMobileMenuOpen ? 'open' : ''}`}>
         <div style={{ padding: '0.5rem', marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <Activity color="var(--accent-color)" size={28} />
           <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-white)' }}>Spine West<br/><span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Clinical Assistant</span></h2>
         </div>
         
-        <div className={`sidebar-item ${activeTab === 'patients' ? 'active' : ''}`} onClick={() => setActiveTab('patients')}>
+        <div className={`sidebar-item ${activeTab === 'patients' ? 'active' : ''}`} onClick={() => { setActiveTab('patients'); setIsMobileMenuOpen(false); }}>
           <Users size={18} /> Patient Records
         </div>
-        <div className={`sidebar-item ${activeTab === 'profile' ? 'active' : ''}`} onClick={() => setActiveTab('profile')}>
+        <div className={`sidebar-item ${activeTab === 'profile' ? 'active' : ''}`} onClick={() => { setActiveTab('profile'); setIsMobileMenuOpen(false); }}>
           <User size={18} /> Provider Profile
         </div>
-        <div className={`sidebar-item ${activeTab === 'settings' ? 'active' : ''}`} onClick={() => setActiveTab('settings')}>
+        <div className={`sidebar-item ${activeTab === 'settings' ? 'active' : ''}`} onClick={() => { setActiveTab('settings'); setIsMobileMenuOpen(false); }}>
           <Settings size={18} /> eCW FHIR Settings
         </div>
 
@@ -387,24 +388,21 @@ export default function AppDashboard() {
       {/* Main Content Area */}
       <main className="main-content">
         <header className="top-nav">
-          <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            {activeTab === 'patients' && (
-              <>
-                <Users size={16} /> Patients {selectedPatient && <><ChevronRight size={14} /> <span style={{ color: 'var(--text-white)' }}>{selectedPatient.name}</span></>}
-              </>
-            )}
-            {activeTab === 'settings' && <><Settings size={16} /> Settings</>}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <button className="mobile-only-btn" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} style={{ background: 'transparent', border: 'none', color: 'var(--text-white)', cursor: 'pointer', display: 'none' }}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+            <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              {activeTab === 'patients' && (
+                <>
+                  <Users size={16} /> Patients {selectedPatient && <><ChevronRight size={14} /> <span style={{ color: 'var(--text-white)' }}>{selectedPatient.name}</span></>}
+                </>
+              )}
+              {activeTab === 'settings' && <><Settings size={16} /> Settings</>}
+              {activeTab === 'profile' && <><User size={16} /> Profile</>}
+            </div>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <button onClick={() => {
-                setVoiceEnabled(!voiceEnabled);
-                if (voiceEnabled) window.speechSynthesis.cancel();
-              }} 
-              style={{ background: 'transparent', border: 'none', color: voiceEnabled ? 'var(--accent-color)' : 'var(--text-secondary)', cursor: 'pointer' }}
-              title={voiceEnabled ? "Voice Output Enabled" : "Voice Output Muted"}
-            >
-              {voiceEnabled ? <Volume2 size={20} /> : <VolumeX size={20} />}
-            </button>
             <div style={{ background: 'transparent', color: 'var(--text-white)', border: 'none', fontSize: '0.9rem', outline: 'none' }}>
               {currentProviderName}
             </div>
@@ -498,8 +496,9 @@ export default function AppDashboard() {
                               )) : <div style={{ color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>No imaging records found.</div>}
                             </div>
                           ) : (
-                            <ResponsiveContainer width="100%" height="100%">
-                              {activeGraph === 'bp' ? (
+                            <div style={{ flex: 1, width: '100%', minHeight: '250px' }}>
+                              <ResponsiveContainer width="100%" height="100%">
+                                {activeGraph === 'bp' ? (
                                 <LineChart data={selectedPatient.vitalsHistory} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                                   <CartesianGrid strokeDasharray="3 3" stroke="#30363d" />
                                   <XAxis dataKey="date" stroke="#8b949e" fontSize={12} tickFormatter={(tick) => tick.substring(5)} />
@@ -519,7 +518,8 @@ export default function AppDashboard() {
                                   <Line yAxisId="right" type="monotone" dataKey="glucose" name="Fasting Glucose" stroke="#3fb950" strokeWidth={2} dot={{ r: 4 }} />
                                 </LineChart>
                               )}
-                            </ResponsiveContainer>
+                              </ResponsiveContainer>
+                            </div>
                           )}
                         </div>
                       </div>
@@ -562,6 +562,15 @@ export default function AppDashboard() {
 
                       {/* Chat Input Area */}
                       <div style={{ padding: '1rem', borderTop: '1px solid var(--border-color)', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                        <button onClick={() => {
+                            setVoiceEnabled(!voiceEnabled);
+                            if (voiceEnabled) window.speechSynthesis.cancel();
+                          }} 
+                          style={{ background: 'transparent', border: 'none', color: voiceEnabled ? 'var(--accent-color)' : 'var(--text-secondary)', cursor: 'pointer', padding: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                          title={voiceEnabled ? "Voice Output Enabled" : "Voice Output Muted"}
+                        >
+                          {voiceEnabled ? <Volume2 size={20} /> : <VolumeX size={20} />}
+                        </button>
                         <button 
                           onClick={toggleListening}
                           style={{ 
