@@ -1,0 +1,16 @@
+{
+  "keys": [
+    {
+      "kty": "RSA",
+      "alg": "RS384",
+      "n": "0HDPpeDJN3lKIabxY_Z1l9Au7reYhe3G0OuQbR6ZLZ0ZKceT743RWE04L72AM0Jwi1-4iZD9onyB5YLhxzBKHxdDInGQXt3f5dBZsH8mUc3BB6G4SlYqYcTjvp9-GMSL7238AG6ahI9NvAipqspDqYrN6UpxHykVuVvs3lSvxeX6IWauNxIZbh5IGEj6dl-6CMA3UVUzdWNmZp9ugWQibPtSmwS-t-Gw22kFl_3Yl3og0aWcXi331HzcXdhiUdS-qmJ9oa78fHeDIArBNj_Unqiofqu9l3TjGIyegI-xwNerUyWBUw6-3dVJzF6-UA0-enqZBSptN2MoOGkxyMWbXw",
+      "e": "AQAB",
+      "use": "sig",
+      "key_ops": [
+        "verify"
+      ],
+      "ext": true,
+      "kid": "spine-west-key-1"
+    }
+  ]
+}
