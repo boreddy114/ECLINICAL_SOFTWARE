@@ -320,3 +320,61 @@ textarea.input-field {
   border-bottom: 1px solid rgba(48, 54, 61, 0.4);
   font-size: 0.9rem;
 }
+
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .sidebar-item {
+    margin-bottom: 0;
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+  .pulse-indicator {
+    display: none;
+  }
+  .dashboard-scroll {
+    flex-direction: column;
+    padding: 1rem;
+    overflow: visible;
+  }
+  .glass-panel {
+    width: 100% !important;
+    height: auto !important;
+    min-height: unset !important;
+  }
+  .mobile-stack {
+    flex-direction: column !important;
+    height: auto !important;
+  }
+  .mobile-full-width {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .main-content {
+    overflow-y: visible;
+  }
+  .top-nav {
+    padding: 0 1rem;
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 64px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  .top-nav > div {
+    margin-bottom: 0.5rem;
+  }
+}

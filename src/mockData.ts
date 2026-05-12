@@ -1,3 +1,8 @@
+export const providers = [
+  { id: 'pr-1', name: 'Dr. Sarah Jenkins', specialty: 'Orthopedic Surgery', initials: 'SJ' },
+  { id: 'pr-2', name: 'Dr. Michael Chen', specialty: 'Neurology', initials: 'MC' }
+];
+
 export const patients = [
   {
     id: "PT-001",
@@ -14,11 +19,18 @@ export const patients = [
       { date: "2023-07-22", sys: 122, dia: 80, hr: 72, temp: 98.5 },
       { date: "2023-10-15", sys: 120, dia: 80, hr: 72, temp: 98.6 }
     ],
+    labHistory: [
+      { date: "2023-01-10", a1c: 6.2, glucose: 105 },
+      { date: "2023-04-15", a1c: 6.0, glucose: 98 },
+      { date: "2023-07-22", a1c: 5.8, glucose: 95 },
+      { date: "2023-10-15", a1c: 5.7, glucose: 92 }
+    ],
     vitals: {
       bp: "120/80",
       hr: "72",
       temp: "98.6°F",
       weight: "145 lbs",
+      bmi: "23.4",
       height: "5'6\""
     },
     conditions: [
@@ -37,6 +49,9 @@ export const patients = [
     encounters: [
       { date: "2023-10-15", type: "Follow-up", provider: "Dr. Sarah Jenkins", notes: "Patient reported slight lower back pain. BP is stable." },
       { date: "2023-06-22", type: "Annual Physical", provider: "Dr. Sarah Jenkins", notes: "All labs normal. Refilled Metformin." }
+    ],
+    imaging: [
+      { id: "IMG-001", type: "MRI", region: "Lumbar Spine", date: "2023-02-18", status: "Reviewed", url: "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&q=80&w=800" }
     ]
   },
   {
@@ -53,11 +68,17 @@ export const patients = [
       { date: "2023-06-11", sys: 138, dia: 88, hr: 80, temp: 98.3 },
       { date: "2023-11-02", sys: 135, dia: 88, hr: 84, temp: 98.2 }
     ],
+    labHistory: [
+      { date: "2023-02-14", a1c: 5.5, glucose: 92 },
+      { date: "2023-06-11", a1c: 5.4, glucose: 89 },
+      { date: "2023-11-02", a1c: 5.6, glucose: 95 }
+    ],
     vitals: {
       bp: "135/88",
       hr: "84",
       temp: "98.2°F",
       weight: "210 lbs",
+      bmi: "29.3",
       height: "5'11\""
     },
     conditions: [
@@ -73,6 +94,9 @@ export const patients = [
     ],
     encounters: [
       { date: "2023-11-02", type: "Consultation", provider: "Dr. Alan Smith", notes: "Discussed joint pain in right knee. Recommended physical therapy." }
+    ],
+    imaging: [
+      { id: "IMG-002", type: "X-Ray", region: "Right Knee", date: "2023-11-02", status: "Reviewed", url: "https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&q=80&w=800" }
     ]
   },
   {
@@ -89,11 +113,17 @@ export const patients = [
       { date: "2023-05-30", sys: 112, dia: 70, hr: 66, temp: 98.4 },
       { date: "2023-09-18", sys: 110, dia: 70, hr: 68, temp: 98.4 }
     ],
+    labHistory: [
+      { date: "2023-01-20", a1c: 4.8, glucose: 82 },
+      { date: "2023-05-30", a1c: 4.9, glucose: 85 },
+      { date: "2023-09-18", a1c: 4.9, glucose: 84 }
+    ],
     vitals: {
       bp: "110/70",
       hr: "68",
       temp: "98.4°F",
       weight: "130 lbs",
+      bmi: "22.3",
       height: "5'4\""
     },
     conditions: [
@@ -109,6 +139,7 @@ export const patients = [
     ],
     encounters: [
       { date: "2023-09-18", type: "Sick Visit", provider: "Dr. Emily Chen", notes: "Patient experiencing exacerbation of asthma symptoms due to pollen." }
-    ]
+    ],
+    imaging: []
   }
 ];
