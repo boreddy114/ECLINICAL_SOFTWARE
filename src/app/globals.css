@@ -382,4 +382,16 @@ textarea.input-field {
   .top-nav > div {
     margin-bottom: 0.5rem;
   }
+  
+  .login-container {
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 100vh;
+  }
+  .login-info-panel {
+    display: none !important;
+  }
+  .login-auth-panel {
+    min-height: 100vh;
+  }
 }

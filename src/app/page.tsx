@@ -234,10 +234,10 @@ export default function AppDashboard() {
 
   if (!session) {
     return (
-      <div style={{ minHeight: '100vh', width: '100vw', display: 'flex', background: '#0d1117', position: 'fixed', top: 0, left: 0, zIndex: 9999 }}>
+      <div className="login-container" style={{ minHeight: '100vh', width: '100vw', display: 'flex', background: '#0d1117', zIndex: 9999 }}>
         
         {/* Left Informational Panel */}
-        <div style={{ flex: 1, position: 'relative', background: 'linear-gradient(135deg, rgba(22,27,34,1) 0%, rgba(13,17,23,1) 100%)', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '4rem', borderRight: '1px solid rgba(88, 166, 255, 0.1)' }}>
+        <div className="login-info-panel" style={{ flex: 1, position: 'relative', background: 'linear-gradient(135deg, rgba(22,27,34,1) 0%, rgba(13,17,23,1) 100%)', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '4rem', borderRight: '1px solid rgba(88, 166, 255, 0.1)' }}>
           <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundImage: 'radial-gradient(circle at 20% 30%, rgba(88, 166, 255, 0.05) 0%, transparent 50%)', pointerEvents: 'none' }}></div>
           
           <div style={{ maxWidth: '500px' }}>
@@ -272,7 +272,7 @@ export default function AppDashboard() {
         </div>
 
         {/* Right Authentication Panel */}
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0d1117' }}>
+        <div className="login-auth-panel" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0d1117', padding: '2rem 1rem' }}>
           <div className="glass-panel mobile-full-width" style={{ width: '420px', padding: '3rem 2.5rem', display: 'flex', flexDirection: 'column', gap: '2rem', border: '1px solid rgba(255, 255, 255, 0.05)', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)' }}>
             <div style={{ textAlign: 'center' }}>
               <h2 style={{ color: 'var(--text-white)', fontSize: '1.8rem', fontWeight: 700, letterSpacing: '-0.5px' }}>Provider Access</h2>
