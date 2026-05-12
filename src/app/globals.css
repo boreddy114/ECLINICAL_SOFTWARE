@@ -322,11 +322,16 @@ textarea.input-field {
 }
 
 @media (max-width: 768px) {
+  body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
   .app-container {
     flex-direction: column;
     height: auto;
     min-height: 100vh;
-    overflow-y: auto;
+    overflow-y: visible;
   }
   .sidebar {
     width: 100%;
